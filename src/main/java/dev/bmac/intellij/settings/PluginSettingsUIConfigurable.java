@@ -6,6 +6,7 @@ import com.intellij.openapi.options.SearchableConfigurable;
 import com.intellij.ui.DoubleClickListener;
 import com.intellij.ui.ToolbarDecorator;
 import com.intellij.ui.table.JBTable;
+import org.apache.commons.compress.utils.Lists;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -37,6 +38,8 @@ public class PluginSettingsUIConfigurable implements SearchableConfigurable, Con
     private PluginSettings pluginSettings = PluginSettings.getInstance();
 
     public PluginSettingsUIConfigurable() {
+        indexExcludeList = pluginSettings.getIndexPathExclude();
+        tableModel = new IndexExclusionTableModel(indexExcludeList);
         table = new JBTable(tableModel);
         table.getEmptyText().setText("Add paths to be excluded from indexing");
         TableColumn tableColumn = table.getColumnModel().getColumn(1);
@@ -133,7 +136,6 @@ public class PluginSettingsUIConfigurable implements SearchableConfigurable, Con
     }
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
     }
 
 }

@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>dev.bmac.indexExclusion</id>
     <name>Index excluder</name>
-    <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+    <vendor email="brianmay27@gmail.com"></vendor>
 
     <description><![CDATA[
     Enter short description for your plugin here.<br>
@@ -11,10 +11,16 @@
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
+    
+    <idea-version since-build="193.5233"/>
 
     <extensions defaultExtensionNs="com.intellij">
         <postStartupActivity implementation="dev.bmac.intellij.indexing.IndexFilter$IndexFilterLogStartupActivity"/>
         <globalIndexFilter implementation="dev.bmac.intellij.indexing.IndexFilter"/>
+        <applicationService serviceImplementation="dev.bmac.intellij.settings.PluginSettings"/>
+
+        <applicationConfigurable displayName="Index excluder" instance="dev.bmac.intellij.settings.PluginSettingsUIConfigurable"
+                                 id="dev.bmac.indexExclusion"/>
     </extensions>
 
     <actions>

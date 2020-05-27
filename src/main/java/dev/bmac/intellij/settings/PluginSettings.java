@@ -25,7 +25,6 @@ public class PluginSettings implements PersistentStateComponent<PluginSettings> 
         return ServiceManager.getService(PluginSettings.class);
     }
 
-    @ApiStatus.Experimental
     public boolean isFrontEndIndexDisabled() {
         return frontEndIndex;
     }
@@ -34,14 +33,12 @@ public class PluginSettings implements PersistentStateComponent<PluginSettings> 
         this.frontEndIndex = frontEndIndex;
     }
 
-    @ApiStatus.Experimental
     public boolean isTODOIndexDisabled() {
         return TODOIndex;
     }
 
-    @ApiStatus.Experimental
     public List<IndexExclusion> getIndexPathExclude()  {
-        return new ArrayList<>(indexPathExclude);
+        return indexPathExclude;
     }
 
     public void setIndexPathExclude(List<IndexExclusion> paths) {
@@ -51,6 +48,7 @@ public class PluginSettings implements PersistentStateComponent<PluginSettings> 
     public void setTODOIndexDisabled(boolean TODOIndex) {
         this.TODOIndex = TODOIndex;
     }
+
     @Nullable
     @Override
     @JsonIgnore

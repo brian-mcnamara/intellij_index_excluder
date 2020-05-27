@@ -18,6 +18,7 @@ import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,7 +39,9 @@ public class PluginSettingsUIConfigurable implements SearchableConfigurable, Con
     private PluginSettings pluginSettings = PluginSettings.getInstance();
 
     public PluginSettingsUIConfigurable() {
-        indexExcludeList = pluginSettings.getIndexPathExclude();
+        indexExcludeList = new ArrayList<>(pluginSettings.getIndexPathExclude());
+        frontEndIndex.setSelected(pluginSettings.isFrontEndIndexDisabled());
+        todoIndex.setSelected(pluginSettings.isTODOIndexDisabled());
         tableModel = new IndexExclusionTableModel(indexExcludeList);
         table = new JBTable(tableModel);
         table.getEmptyText().setText("Add paths to be excluded from indexing");
